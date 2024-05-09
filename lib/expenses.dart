@@ -1,3 +1,4 @@
+import 'package:expenser/expenses_list.dart';
 import 'package:expenser/models/expense.dart';
 import 'package:flutter/material.dart';
 
@@ -20,8 +21,7 @@ class _ExpensesState extends State<Expenses> {
     ),
     Expense(
       title: 'Cinema',
-      amount: 15,
-      69,
+      amount: 15.69,
       date: DateTime.now(),
       catagory: Catagory.leasure,
     )
@@ -29,14 +29,16 @@ class _ExpensesState extends State<Expenses> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Column(
         children: [
-          Text('The Chart will be set here'),
-          SizedBox(
+          const Text('The Chart will be set here'),
+          const SizedBox(
             height: 30,
           ),
-          Text('Expense List ...'),
+          Expanded(
+            child: ExpensesList(expenses: _registeredExpenses),
+          ),
         ],
       ),
     );
