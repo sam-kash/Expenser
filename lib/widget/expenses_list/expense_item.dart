@@ -28,11 +28,11 @@ class ExpenseItem extends StatelessWidget {
                 const Spacer(),
                 Row(
                   children: [
-                    const Icon(Icons.accessible_forward_outlined),
+                    Icon(catagoryIcons[expense.catagory]),
                     const SizedBox(
                       width: 8,
                     ),
-                    Text(expense.date.toString())
+                    Text(expense.formattedDate),
                   ],
                 )
               ],
