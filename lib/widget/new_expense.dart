@@ -1,6 +1,8 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
+import 'package:expenser/models/expense.dart';
 
 final formatter = DateFormat.yMd();
 
@@ -23,6 +25,7 @@ class _NewExpenseState extends State<NewExpense> {
   final _titleController = TextEditingController();
   final _amountController = TextEditingController();
   DateTime? _selectedDate; // Either some value or can be NULL initially
+  Catagory _selectedCatagory = Catagory.leasure;
 
   void _presentDatePicker() async {
     final now = DateTime.now();
@@ -90,8 +93,29 @@ class _NewExpenseState extends State<NewExpense> {
               ),
             ],
           ),
+          const SizedBox(
+            height: 16,
+          ),
           Row(
             children: [
+              DropdownButton(
+                  value: _selectedCatagory,
+                  items: Catagory.values
+                      .map(
+                        (catagory) => DropdownMenuItem(
+                          value: catagory,
+                          child: Text(catagory.name.toUpperCase()),
+                        ),
+                      )
+                      .toList(),
+                  onChanged: (value) {
+                    setState(() {
+                      if (value == null) {
+                        return;
+                      }
+                      _selectedCatagory = value;
+                    });
+                  }),
               ElevatedButton(
                 onPressed: () {
                   print(_titleController.text);
