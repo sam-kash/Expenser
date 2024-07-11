@@ -40,12 +40,19 @@ class Expense {
   }
 }
 
+// Below code is used for creating a chart
 class ExpenseBucket {
   const ExpenseBucket({required this.catagory, required this.expenses});
+
+  ExpenseBucket.forCatagory(List<Expense> allExpense, this.catagory)
+      : expenses = allExpense
+            .where((expense) => expense.catagory == catagory)
+            .toList();
 
   final Catagory catagory;
   final List<Expense> expenses;
 
+  // Getter function to get the sum of the whole expense list
   double get totalExpenses {
     double sum = 0;
     for (final expense in expenses) {

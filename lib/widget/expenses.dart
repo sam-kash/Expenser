@@ -1,3 +1,4 @@
+import 'package:expenser/widget/chart/chart.dart';
 import 'package:expenser/widget/expenses_list/expenses_list.dart';
 import 'package:expenser/models/expense.dart';
 import 'package:expenser/widget/new_expense.dart';
@@ -88,7 +89,7 @@ class _ExpensesState extends State<Expenses> {
       ),
       body: Column(
         children: [
-          const Text('The Chart will be set here'),
+          Chart(expenses: _registeredExpenses),
           const SizedBox(
             height: 30,
           ),
